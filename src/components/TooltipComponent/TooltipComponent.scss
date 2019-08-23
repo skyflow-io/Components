@@ -6,14 +6,16 @@ $font-color: #FFFFFF;
 
   width: 200px;
   display: flex;
+  visibility: hidden;
   flex-flow: row;
   justify-content: flex-start;
   align-items: center;
   box-sizing: border-box;
-  position: relative;
   background-color: $background-color;
   border: 1px solid $border-color;
   color: $font-color;
+  position: fixed;
+  z-index: 1000;
 
   .component__tooltip-picture {
     box-sizing: border-box;
@@ -34,14 +36,13 @@ $font-color: #FFFFFF;
     width: 5px;
     height: 5px;
     position: absolute;
-    transform: rotate(45deg);
     background-color: $background-color;
     border: 1px solid $border-color;
+    transform: rotate(45deg);
   }
 
-  .component__tooltip-arrow ,
   &[data-placement="bottom"] {
-    &.component__tooltip-arrow, .component__tooltip-arrow {
+    .component__tooltip-arrow {
       left: 0;
       right: 0;
       top: -4px;
