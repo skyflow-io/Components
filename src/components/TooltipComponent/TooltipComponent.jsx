@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 const _ = require('lodash');
 import './TooltipComponent.scss';
+import ItemLineComponent from '../ItemLineComponent/ItemLineComponent.jsx';
 
 const calculatePosition = (tooltipContainer, props)=>{
 
@@ -136,9 +137,6 @@ const placementsHandler = {
  * @class Tooltip
  * @author Skyflow
  * @version 1.0.0
- * @example
- *      let tooltip = new Tooltip('.my-trigger-selector', 'Hello world !');
- *      tooltip.placement('left').position('-6', null).trigger('click');
  */
 const TooltipComponent = (props) => {
 
@@ -147,19 +145,12 @@ const TooltipComponent = (props) => {
     }
 
     const tooltipContainerRef = useRef(null);
-    const tooltipContentRef = useRef(null);
 
     useEffect(() => {
         if(!tooltipContainerRef.current){
             return;
         }
         const tooltipContainer = tooltipContainerRef.current;
-        const tooltipContent = tooltipContentRef.current;
-        const tooltipContainerWidth = tooltipContainer.getBoundingClientRect().width;
-
-        if(props.picture){
-            tooltipContent.style.width = (tooltipContainerWidth - props.pictureSize) + 'px';
-        }
 
         let c = calculatePosition(tooltipContainer, props);
 
@@ -190,19 +181,9 @@ const TooltipComponent = (props) => {
             data-placement={props.placement}
         >
             <span className={'component__tooltip-arrow'}/>
-            {
-                props.picture ? (
-                    <div className={'component__tooltip-picture'} style={{
-                        width: props.pictureSize,
-                        height: props.pictureSize,
-                    }}>
-                        <img src={props.picture} alt={props.pictureDesc}/>
-                    </div>
-                ) : null
-            }
-           <div className={'component__tooltip-content'} ref={tooltipContentRef}>
-               {props.children}
-           </div>
+
+            <ItemLineComponent {...props}/>
+
         </div>
     );
 };
