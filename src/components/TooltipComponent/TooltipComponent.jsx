@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-const _ = require('lodash');
+import Helper from '../../Helper';
 import ItemLineComponent from '../ItemLineComponent/ItemLineComponent.jsx';
 import './TooltipComponent.scss';
 
@@ -9,23 +9,23 @@ const calculatePosition = (tooltipContainer, props)=>{
     let x = 0;
     let y = 0;
 
-    if(_.isNumber(props.x)){
+    if(Helper.isNumber(props.x)){
         x = props.x;
     }
-    if(_.isNumber(props.y)){
+    if(Helper.isNumber(props.y)){
         y = props.y;
     }
 
-    if(_.isElement(props.target)){
+    if(Helper.isElement(props.target)){
         let c = placementsHandler[props.placement](tooltipContainer, props.target);
         x = c.x; y = c.y;
 
     }
 
-    if(_.isString(props.x)){
+    if(Helper.isString(props.x)){
         x = x + parseFloat(props.x);
     }
-    if(_.isString(props.y)){
+    if(Helper.isString(props.y)){
         y = y + parseFloat(props.y);
     }
 
@@ -140,7 +140,7 @@ const placementsHandler = {
  */
 const TooltipComponent = (props) => {
 
-    if(!_.isElement(props.target) && !_.isNull(props.target)){
+    if(!Helper.isElement(props.target) && !Helper.isNull(props.target)){
         return null;
     }
 

@@ -1,7 +1,6 @@
 import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import Helper from '../../Helper';
-const _ = require('lodash');
 import './CheckboxComponent.scss';
 
 /**
