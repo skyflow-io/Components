@@ -11,6 +11,7 @@ import './ItemLineComponent.scss';
  */
 const ItemLineComponent = (props) => {
     const tooltipContainerRef = useRef(null);
+    const tooltipPictureRef = useRef(null);
     const tooltipContentRef = useRef(null);
 
     useEffect(() => {
@@ -26,18 +27,42 @@ const ItemLineComponent = (props) => {
         }
     });
 
+    const onEvent = (e)=>{
+
+        const context = {
+            e,
+            dom: {
+                container: tooltipContainerRef.current,
+                picture: tooltipPictureRef.current,
+                content: tooltipContentRef.current,
+            },
+            props
+        };
+
+        switch (e.type) {
+            case 'mouseover':
+                return props.onMouseOver(context);
+            case 'mouseout':
+                return props.onMouseOut(context);
+            case 'click':
+                return props.onClick(context);
+        }
+    };
+
     return (
         <div className='component__item-line-container' ref={tooltipContainerRef}
-             onClick={props.onClick}
-             onMouseOver={props.onMouseOver}
-             onMouseOut={props.onMouseOut}
+             onClick={onEvent}
+             onMouseOver={onEvent}
+             onMouseOut={onEvent}
         >
             {
                 props.picture ? (
                     <div className={'component__item-line-picture'} style={{
-                        width: props.pictureSize,
-                        height: props.pictureSize,
-                    }}>
+                            width: props.pictureSize,
+                            height: props.pictureSize,
+                        }}
+                         ref={tooltipPictureRef}
+                    >
                         <img src={props.picture} alt={props.pictureDesc}/>
                     </div>
                 ) : null
