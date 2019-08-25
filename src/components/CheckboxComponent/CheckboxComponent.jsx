@@ -52,16 +52,16 @@ const CheckboxComponent = (props) => {
         <label
             className={
                 'component__checkbox-container' + (props.classes ? (' ' + props.classes) : '') +
-                (checked ? ' component__checkbox-is-checked' : '')
+                ' component__checkbox-is-' + props.type
             }
             style={props.styles}
             ref={labelContainerRef}
         >
-            <input type={'checkbox'} className={'component__checkbox-input'}
+            <input type={props.type} className={'component__checkbox-input'}
                    ref={inputRef}
                    name={props.name}
                    onChange={onChange}
-                   checked={checked}
+                   defaultChecked={checked}
                    style={{display: 'none'}}
             />
 
@@ -87,6 +87,7 @@ CheckboxComponent.defaultProps = {
     classes: null,
     styles: {},
     checked: false,
+    type: 'checkbox',
     name: null,
     target: null,
     onCheck: null,
@@ -106,6 +107,10 @@ CheckboxComponent.propTypes = {
      * Set if Checkbox is checked or not
      */
     checked: PropTypes.bool,
+    /**
+     * Type of input
+     */
+    type: PropTypes.oneOf(['checkbox', 'radio']),
     /**
      * Input name attribute
      */

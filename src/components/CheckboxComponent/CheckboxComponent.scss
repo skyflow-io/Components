@@ -37,15 +37,29 @@ $transition-time: 0.3s;
 
   }
 
-  &.component__checkbox-is-checked {
-
+  &.component__checkbox-is-radio {
     .component__checkbox-mark {
+      border-radius: 50%;
+      &:before {
+        border-radius: 50%;
+      }
+    }
+  }
+
+  input:checked + span.component__checkbox-mark {
+    border-color: $color-primary;
+    &:before {
+      transform: scale(1);
+    }
+  }
+
+  input:checked + span.component__checkbox-line {
+    span.component__checkbox-mark {
       border-color: $color-primary;
       &:before {
         transform: scale(1);
       }
     }
-
   }
 
   .component__checkbox-line {
