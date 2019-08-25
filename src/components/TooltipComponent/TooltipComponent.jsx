@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 const _ = require('lodash');
-import './TooltipComponent.scss';
 import ItemLineComponent from '../ItemLineComponent/ItemLineComponent.jsx';
+import './TooltipComponent.scss';
 
 const calculatePosition = (tooltipContainer, props)=>{
 
@@ -23,10 +23,10 @@ const calculatePosition = (tooltipContainer, props)=>{
     }
 
     if(_.isString(props.x)){
-        x = eval(x + props.x);
+        x = x + parseFloat(props.x);
     }
     if(_.isString(props.y)){
-        y = eval(y + props.y);
+        y = y + parseFloat(props.y);
     }
 
     return {x, y};
@@ -159,24 +159,22 @@ const TooltipComponent = (props) => {
         tooltipContainer.style.visibility = 'visible';
     });
 
-    let tooltipStyle = {
+    let tooltipStyles = {
         position: 'fixed'
     };
     if(props.width){
-        tooltipStyle.width = props.width;
+        tooltipStyles.width = props.width;
     }
     if(props.zIndex){
-        tooltipStyle.zIndex = props.zIndex;
+        tooltipStyles.zIndex = props.zIndex;
     }
 
-    if(_.isObject(props.style)){
-        tooltipStyle = Object.assign(tooltipStyle, props.style);
-    }
+    tooltipStyles = Object.assign(tooltipStyles, props.styles);
 
     return (
         <div
             className={'component__tooltip-container' + (props.classes ? (' ' + props.classes) : '')}
-            style={tooltipStyle}
+            style={tooltipStyles}
             ref={tooltipContainerRef}
             data-placement={props.placement}
         >
@@ -196,7 +194,7 @@ TooltipComponent.defaultProps = {
     zIndex: null,
     target: null,
     classes: null,
-    style: {},
+    styles: {},
     placement: 'bottom',
     x: 5, y: 5,
 };
@@ -227,9 +225,9 @@ TooltipComponent.propTypes = {
      */
     classes: PropTypes.string,
     /**
-     * Tooltip inline style
+     * Tooltip inline styles
      */
-    style: PropTypes.object,
+    styles: PropTypes.object,
     /**
      * Tooltip placement
      */

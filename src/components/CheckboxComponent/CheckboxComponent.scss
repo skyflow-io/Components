@@ -1,0 +1,69 @@
+// Variables
+$color-primary: #2980B9;
+$color-secondary: #FFFFFF;
+$color-inactive: #BCC8DE;
+$transition-time: 0.3s;
+
+.component__checkbox-container {
+  cursor: pointer;
+  display: inline-block;
+
+  .component__checkbox-input {
+    display: none;
+  }
+
+  .component__checkbox-mark {
+
+    display: inline-block;
+    width: 19px;
+    height: 19px;
+    border: 2px solid $color-inactive;
+    vertical-align: middle;
+    background-color: $color-secondary;
+    position: relative;
+    box-sizing: border-box;
+    transition: all $transition-time;
+
+    &:before {
+      position: absolute;
+      content: "";
+      height: 11px;
+      width: 11px;
+      transform: scale(0);
+      background-color: $color-primary;
+      top: 2px; left: 2px;
+      transition: all $transition-time;
+    }
+
+  }
+
+  &.component__checkbox-is-checked {
+
+    .component__checkbox-mark {
+      border-color: $color-primary;
+      &:before {
+        transform: scale(1);
+      }
+    }
+
+  }
+
+  .component__checkbox-line {
+    width: 100%;
+    display: flex;
+    flex-flow: row;
+    justify-content: flex-start;
+    align-items: center;
+
+    .component__checkbox-label {
+      padding: 0 8px;
+      box-sizing: border-box;
+      width: calc(100% - 19px);
+    }
+  }
+
+}
+
+.component__checkbox-input {
+  display: none;
+}
