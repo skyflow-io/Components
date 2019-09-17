@@ -1,0 +1,109 @@
+// Variables
+$color-primary: #2980B9;
+$color-white: #FFFFFF;
+$color-container-background: #EDF1F2;
+$color-footer-background: #E6EFF1;
+$color-shadow: #000118;
+
+.component__select-container {
+
+  width: 400px;
+  position: absolute;
+  border: 0.5px groove #4A4A4A;
+  z-index: 1000;
+  box-sizing: border-box;
+  background-color: $color-container-background;
+
+  .component__select-header {
+    //padding: 15px;
+    //background-color: green;
+    -webkit-box-shadow: 0 2px 8px -6px $color-shadow;
+    -moz-box-shadow: 0 2px 8px -6px $color-shadow;
+    box-shadow: 0 2px 8px -6px $color-shadow;
+    .component__select-search {
+      //width: 100%;
+      padding: 15px;
+      box-sizing: border-box;
+      input {
+        width: 100%;
+        display: block;
+        font-size: 1em;
+        padding: 8px 15px;
+        //color: $color-shadow;
+        box-sizing: border-box;
+        background-color: $color-white;
+        border: none;
+        border-radius: 30px;
+        //border-radius: 30px;
+        &::-webkit-input-placeholder,
+        &::-moz-placeholder,
+        &:-ms-input-placeholder,
+        &:-moz-placeholder{
+          //color: $color-placeholder;
+          font-style: italic;
+          opacity: 0.8;
+          font-size: 0.8em;
+        }
+      }
+    }
+    .component__select-filter {
+      padding: 0 15px 15px 15px;
+      text-align: center;
+      //background-color: $color-footer-background;
+      box-sizing: border-box;
+      span {
+        display: inline-block;
+        padding: 0 15px;
+      }
+    }
+  }
+
+
+  .component__select-content {
+    height: 300px;
+    overflow: scroll;
+    padding: 15px;
+    //margin-bottom: 15px;
+    box-sizing: border-box;
+    //border: 1px solid red;
+    //background-color: red;
+    &:after {
+      content: '';
+      display: block;
+      height: 15px;
+    }
+  }
+
+  .component__select-footer {
+    padding: 5px 15px;
+    background-color: $color-footer-background;
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    flex-flow: row;
+    justify-content: flex-start;
+    align-items: center;
+    -webkit-box-shadow: 0 -2px 5px -6px $color-shadow;
+    -moz-box-shadow: 0 -2px 5px -6px $color-shadow;
+    box-shadow: 0 -2px 5px -6px $color-shadow;
+    p {
+      margin: 0;
+      padding: 0;
+      width: 50%;
+      &:first-child {
+        text-align: left;
+      }
+      &:last-child {
+        text-align: right;
+      }
+      span {
+        cursor: pointer;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+
+}
